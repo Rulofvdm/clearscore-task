@@ -1,8 +1,19 @@
 package com.clearscore.rulof.application.task.Models;
 
+import org.jetbrains.annotations.NotNull;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 public class CreditCardRequest {
+    @NotNull
     private String name;
+    @NotNull
+    @Max(700)
+    @Min(0)
     private int creditScore;
+    @NotNull
+    @Min(0)
     private int salary;
 
     public CreditCardRequest(String name, int creditScore, int salary) {
@@ -33,5 +44,14 @@ public class CreditCardRequest {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "CreditCardRequest{" +
+                "name='" + name + '\'' +
+                ", creditScore=" + creditScore +
+                ", salary=" + salary +
+                '}';
     }
 }
