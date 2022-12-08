@@ -12,7 +12,7 @@ import javax.validation.Valid;
 public class CreditCards {
 
     @PostMapping("/creditcards")
-    public CreditCard getCreditCards(@RequestBody @Valid CreditCardRequest creditCardRequest ){
+    public CreditCard getCreditCards(@Valid @RequestBody CreditCardRequest creditCardRequest ){
         System.out.println("Test");
         System.out.println(creditCardRequest);
         return new CreditCard("test provider", "test name", 5, 5);

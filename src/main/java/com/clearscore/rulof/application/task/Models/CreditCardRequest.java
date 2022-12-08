@@ -1,57 +1,42 @@
 package com.clearscore.rulof.application.task.Models;
 
+import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
+/**
+ * Represents the request body of the /creditcard endpoint
+ */
+@Data
 public class CreditCardRequest {
-    @NotNull
+    //region Properties
+    @NotBlank(message = "The request contained invalid parameters")
     private String name;
-    @NotNull
-    @Max(700)
-    @Min(0)
-    private int creditScore;
-    @NotNull
-    @Min(0)
-    private int salary;
 
+    @NotBlank(message = "The request contained invalid parameters")
+    @Max(value = 700, message = "The request contained invalid parameters")
+    @Min(value = 0, message = "The request contained invalid parameters")
+    private int creditScore;
+
+    @NotBlank(message = "The request contained invalid parameters")
+    @Min(value = 0, message = "The request contained invalid parameters")
+    private int salary;
+    //endregion
+
+    /**
+     * Constructor
+     * @param name
+     * @param creditScore
+     * @param salary
+     */
     public CreditCardRequest(String name, int creditScore, int salary) {
         this.name = name;
         this.creditScore = creditScore;
         this.salary = salary;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getCreditScore() {
-        return creditScore;
-    }
-
-    public void setCreditScore(int creditScore) {
-        this.creditScore = creditScore;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    @Override
-    public String toString() {
-        return "CreditCardRequest{" +
-                "name='" + name + '\'' +
-                ", creditScore=" + creditScore +
-                ", salary=" + salary +
-                '}';
-    }
 }
