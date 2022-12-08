@@ -12,17 +12,17 @@ import lombok.Data;
 @Data
 public class CreditCardRequest {
     //region Properties
-    @NotNull(message = "The request contained invalid parameters")
-    @NotBlank(message = "The request contained invalid parameters")
+    @NotNull()
+    @NotBlank()
     private String name;
 
-    @NotNull(message = "The request contained invalid parameters")
-    @Max(value = 700, message = "The request contained invalid parameters")
-    @Min(value = 0, message = "The request contained invalid parameters")
+    @NotNull()
+    @Max(value = 700)
+    @Min(value = 0)
     private int creditScore;
 
-    @NotNull(message = "The request contained invalid parameters")
-    @Min(value = 0, message = "The request contained invalid parameters")
+    @NotNull()
+    @Min(0)
     private int salary;
     //endregion
 
