@@ -2,9 +2,9 @@ package com.clearscore.rulof.application.task.Models;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents the request body of the /creditcard endpoint
@@ -12,18 +12,18 @@ import lombok.Data;
 @Data
 public class CreditCardRequest {
     //region Properties
-    @NotNull()
-    @NotBlank()
+    @NotNull
+    @NotEmpty
     private String name;
 
-    @NotNull()
+    @NotNull
     @Max(value = 700)
     @Min(value = 0)
-    private int creditScore;
+    private Integer creditScore;
 
-    @NotNull()
+    @NotNull
     @Min(0)
-    private int salary;
+    private Integer salary;
     //endregion
 
     /**
