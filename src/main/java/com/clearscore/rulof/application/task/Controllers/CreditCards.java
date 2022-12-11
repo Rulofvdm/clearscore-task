@@ -28,17 +28,20 @@ public class CreditCards {
 
     @PostMapping("/creditcards")
     public ResponseEntity<?> getCreditCards(@Valid @RequestBody CreditCardRequest creditCardRequest){
+        System.out.println("hello");
         List<CreditCardResponse> creditCardResponses = new ArrayList<>();
         try{
             CSCardsResponse[] csCardsResponses = CSCards.getCSCardsResponses(creditCardRequest.toCSCardsRequest());
+            System.out.println("csCardsResponses length: " + csCardsResponses.length);
             creditCardResponses.addAll(Arrays.stream(csCardsResponses).map((x) -> x.toCreditCardResponse()).collect(Collectors.toList()));
 
             ScoredCardsResponse[] scoredCardsResponses = ScoredCards.getScoredCardsResponses(creditCardRequest.toScoredCardsRequest());
+            System.out.println("scoredCardsResponses length: " + scoredCardsResponses.length);
             creditCardResponses.addAll(Arrays.stream(scoredCardsResponses).map((x) -> x.toCreditCardResponse()).collect(Collectors.toList()));
         } catch (CSCardsFailedException e) {
-            ResponseEntity.internalServerError().body("The CSCards service failed");
+            return ResponseEntity.internalServerError().body("The CSCards service failed");
         } catch (ScoredCardsFailedException e) {
-            ResponseEntity.internalServerError().body("The ScoredCards service failed");
+            return ResponseEntity.internalServerError().body("The ScoredCards service failed");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
