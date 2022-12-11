@@ -1,5 +1,7 @@
-package com.clearscore.rulof.application.task.Models;
+package com.clearscore.rulof.application.task.Models.CreditCardEndpoint;
 
+import com.clearscore.rulof.application.task.Models.CSCardsService.CSCardsRequest;
+import com.clearscore.rulof.application.task.Models.ScoredCardsService.ScoredCardsRequest;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -36,5 +38,13 @@ public class CreditCardRequest {
         this.name = name;
         this.creditScore = creditScore;
         this.salary = salary;
+    }
+
+    public CSCardsRequest toCSCardsRequest(){
+        return new CSCardsRequest(name, creditScore);
+    }
+
+    public ScoredCardsRequest toScoredCardsRequest(){
+        return new ScoredCardsRequest(name, creditScore, salary);
     }
 }
