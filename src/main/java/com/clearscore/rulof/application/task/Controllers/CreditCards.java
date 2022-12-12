@@ -26,22 +26,24 @@ import java.util.stream.Collectors;
 @RestController
 public class CreditCards {
 
+    /**
+     * The endpoint for the /creditcards post request.
+     * @param creditCardRequest
+     * @return
+     */
     @PostMapping("/creditcards")
     public ResponseEntity<?> getCreditCards(@Valid @RequestBody CreditCardRequest creditCardRequest){
-        System.out.println("hello");
         List<CreditCardResponse> creditCardResponses = new ArrayList<>();
         try{
             CSCardsResponse[] csCardsResponses = CSCards.getCSCardsResponses(creditCardRequest.toCSCardsRequest());
-            System.out.println("csCardsResponses length: " + csCardsResponses.length);
             creditCardResponses.addAll(Arrays.stream(csCardsResponses).map((x) -> x.toCreditCardResponse()).collect(Collectors.toList()));
 
             ScoredCardsResponse[] scoredCardsResponses = ScoredCards.getScoredCardsResponses(creditCardRequest.toScoredCardsRequest());
-            System.out.println("scoredCardsResponses length: " + scoredCardsResponses.length);
             creditCardResponses.addAll(Arrays.stream(scoredCardsResponses).map((x) -> x.toCreditCardResponse()).collect(Collectors.toList()));
         } catch (CSCardsFailedException e) {
-            return ResponseEntity.internalServerError().body("The CSCards service failed");
+            return ResponseEntity.internalServerError().body(e.getMessage());
         } catch (ScoredCardsFailedException e) {
-            return ResponseEntity.internalServerError().body("The ScoredCards service failed");
+            return ResponseEntity.internalServerError().body(e.getMessage());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -50,6 +52,11 @@ public class CreditCards {
         return ResponseEntity.ok(creditCardResponses);
     }
 
+    /**
+     * Catches 400 errors to change the response message.
+     * @param ex
+     * @return Returns a bad request message to the request
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         return ResponseEntity.badRequest().body("Improper request parameters.");

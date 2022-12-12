@@ -9,11 +9,14 @@ import org.jetbrains.annotations.NotNull;
 
 import static java.lang.Math.pow;
 
+/**
+ * The response body received from the post to the CSCards API
+ */
 @Data
 public class CSCardsResponse {
     @NotEmpty
     @NotNull
-    private String cardName;
+    private String card;
 
     @NotNull
     @Min(0)
@@ -22,20 +25,32 @@ public class CSCardsResponse {
 
     @NotNull
     @Min(0)
-    @Max(10)
-    private double eligibility;
+    @Max(1)
+    private double approvalRating;
 
-    public CSCardsResponse(@NotNull String cardName, @NotNull double apr, @NotNull double eligibility) {
-        this.cardName = cardName;
+    /** Default constructor needed by the ObjectMapper.readValue function */
+    public CSCardsResponse() {}
+
+    /** Constructor */
+    public CSCardsResponse(String card, double apr, double approvalRating) {
+        this.card = card;
         this.apr = apr;
-        this.eligibility = eligibility;
+        this.approvalRating = approvalRating;
     }
 
+    /**
+     * Used to get the card sorting order.
+     * The response from the CSCards API is in a range of 0.0 - 1.0 so the approvalRating
+     * is first turned to a 0-100 scale.
+     * sortingScore = eligibility • ((1/apr)²)
+     * @return
+     */
     private double getCardScore(){
-        return eligibility * 10 * (pow(1/apr,2));
+        return approvalRating * 100 * (pow(1/apr,2));
     }
 
+    /** this -> CreditCardResponse */
     public CreditCardResponse toCreditCardResponse(){
-        return new CreditCardResponse("CSCards", cardName, apr, getCardScore());
+        return new CreditCardResponse("CSCards", card, apr, getCardScore());
     }
 }

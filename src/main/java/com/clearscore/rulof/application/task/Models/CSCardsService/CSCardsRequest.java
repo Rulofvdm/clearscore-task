@@ -6,13 +6,18 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * The request body sent to the CSCards API
+ */
 @Data
 public class CSCardsRequest {
     private String name;
-    private Integer creditScore;
+    private Integer score;
+    private Integer salary;
 
-    public CSCardsRequest(String name, Integer creditScore) {
+    public CSCardsRequest(String name, Integer score, Integer salary) {
         this.name = name;
-        this.creditScore = creditScore;
+        this.score = score;
+        this.salary = salary;
     }
 }

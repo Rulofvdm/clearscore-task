@@ -9,11 +9,10 @@ import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents the request body of the /creditcard endpoint
+ * Represents the request body that we receive in the /creditcard endpoint
  */
 @Data
 public class CreditCardRequest {
-    //region Properties
     @NotNull
     @NotEmpty
     private String name;
@@ -26,25 +25,21 @@ public class CreditCardRequest {
     @NotNull
     @Min(0)
     private Integer salary;
-    //endregion
 
-    /**
-     * Constructor
-     * @param name
-     * @param creditScore
-     * @param salary
-     */
+    /** Constructor */
     public CreditCardRequest(String name, int creditScore, int salary) {
         this.name = name;
         this.creditScore = creditScore;
         this.salary = salary;
     }
 
+    /** this -> CSCardsRequest */
     public CSCardsRequest toCSCardsRequest(){
-        return new CSCardsRequest(name, creditScore);
+        return new CSCardsRequest(name, creditScore, salary);
     }
 
+    /** this -> ScoredCardsRequest */
     public ScoredCardsRequest toScoredCardsRequest(){
-        return new ScoredCardsRequest(name, creditScore, salary);
+        return new ScoredCardsRequest(name, creditScore);
     }
 }
