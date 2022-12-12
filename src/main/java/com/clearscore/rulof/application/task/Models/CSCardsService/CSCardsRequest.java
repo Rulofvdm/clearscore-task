@@ -12,12 +12,10 @@ import org.jetbrains.annotations.NotNull;
 @Data
 public class CSCardsRequest {
     private String name;
-    private Integer score;
-    private Integer salary;
+    private Integer creditScore;
 
-    public CSCardsRequest(String name, Integer score, Integer salary) {
+    public CSCardsRequest(String name, Integer creditScore) {
         this.name = name;
-        this.score = score;
-        this.salary = salary;
+        this.creditScore = creditScore;
     }
 }

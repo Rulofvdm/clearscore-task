@@ -17,30 +17,27 @@ import static java.lang.Math.pow;
 public class ScoredCardsResponse {
     @NotEmpty
     @NotNull
-    @JsonProperty("cardName")
-    private String cardName;
+    private String card;
 
     @NotNull
     @Min(0)
     @Max(100)
-    @JsonProperty("apr")
     private double apr;
 
     @NotNull
     @Min(0)
-    @Max(10)
-    @JsonProperty("eligibility")
-    private double eligibility;
+    @Max(1)
+    private double approvalRating;
 
     /** Default constructor needed by the ObjectMapper.readValue function */
     public ScoredCardsResponse() {
     }
 
     /** Constructor */
-    public ScoredCardsResponse(String cardName, double apr, double eligibility) {
-        this.cardName = cardName;
+    public ScoredCardsResponse(@NotNull String card, @NotNull double apr, @NotNull double approvalRating) {
+        this.card = card;
         this.apr = apr;
-        this.eligibility = eligibility;
+        this.approvalRating = approvalRating;
     }
 
     /**
@@ -51,11 +48,11 @@ public class ScoredCardsResponse {
      * @return
      */
     private double getCardScore(){
-        return eligibility * 10 * (pow(1/apr,2));
+        return approvalRating * 10 * (pow(1/apr,2));
     }
 
     /** this -> CreditCardResponse */
     public CreditCardResponse toCreditCardResponse(){
-        return new CreditCardResponse("ScoredCards", cardName, apr, getCardScore());
+        return new CreditCardResponse("ScoredCards", card, apr, getCardScore());
     }
 }

@@ -7,11 +7,14 @@ import lombok.Data;
  */
 @Data
 public class ScoredCardsRequest {
-    private String name;
-    private Integer creditScore;
 
-    public ScoredCardsRequest(String name, Integer creditScore) {
+    private String name;
+    private Integer score;
+    private Integer salary;
+
+    public ScoredCardsRequest(String name, Integer score, Integer salary) {
         this.name = name;
-        this.creditScore = creditScore;
+        this.score = score;
+        this.salary = salary;
     }
 }

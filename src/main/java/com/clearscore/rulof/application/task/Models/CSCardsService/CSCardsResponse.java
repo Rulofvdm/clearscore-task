@@ -1,6 +1,7 @@
 package com.clearscore.rulof.application.task.Models.CSCardsService;
 
 import com.clearscore.rulof.application.task.Models.CreditCardEndpoint.CreditCardResponse;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -16,26 +17,29 @@ import static java.lang.Math.pow;
 public class CSCardsResponse {
     @NotEmpty
     @NotNull
-    private String card;
+    @JsonProperty("cardName")
+    private String cardName;
 
     @NotNull
     @Min(0)
     @Max(100)
+    @JsonProperty("apr")
     private double apr;
 
     @NotNull
     @Min(0)
-    @Max(1)
-    private double approvalRating;
+    @Max(10)
+    @JsonProperty("eligibility")
+    private double eligibility;
 
     /** Default constructor needed by the ObjectMapper.readValue function */
     public CSCardsResponse() {}
 
     /** Constructor */
-    public CSCardsResponse(String card, double apr, double approvalRating) {
-        this.card = card;
+    public CSCardsResponse(@NotNull String cardName, @NotNull double apr, @NotNull double eligibility) {
+        this.cardName = cardName;
         this.apr = apr;
-        this.approvalRating = approvalRating;
+        this.eligibility = eligibility;
     }
 
     /**
@@ -46,11 +50,11 @@ public class CSCardsResponse {
      * @return
      */
     private double getCardScore(){
-        return approvalRating * 100 * (pow(1/apr,2));
+        return eligibility * 100 * (pow(1/apr,2));
     }
 
     /** this -> CreditCardResponse */
     public CreditCardResponse toCreditCardResponse(){
-        return new CreditCardResponse("CSCards", card, apr, getCardScore());
+        return new CreditCardResponse("CSCards", cardName, apr, getCardScore());
     }
 }

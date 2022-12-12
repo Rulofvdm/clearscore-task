@@ -35,11 +35,11 @@ public class CreditCardRequest {
 
     /** this -> CSCardsRequest */
     public CSCardsRequest toCSCardsRequest(){
-        return new CSCardsRequest(name, creditScore, salary);
+        return new CSCardsRequest(name, creditScore);
     }
 
     /** this -> ScoredCardsRequest */
     public ScoredCardsRequest toScoredCardsRequest(){
-        return new ScoredCardsRequest(name, creditScore);
+        return new ScoredCardsRequest(name, creditScore, salary);
     }
 }
