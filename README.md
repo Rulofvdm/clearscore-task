@@ -1,3 +1,8 @@
+This is a project that I built as a task for ClearScore.
+I used Spring Boot with Java,
+as well as Intellij Idea as an IDE and Postman to test it.
+
+
 # Running this project
 
 ## Prerequisites
