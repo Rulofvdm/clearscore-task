@@ -1,10 +1,8 @@
 package com.clearscore.rulof.application.task.Services;
 
 import com.clearscore.rulof.application.task.Exceptions.CSCardsFailedException;
-import com.clearscore.rulof.application.task.Exceptions.ScoredCardsFailedException;
 import com.clearscore.rulof.application.task.Models.CSCardsService.CSCardsRequest;
 import com.clearscore.rulof.application.task.Models.CSCardsService.CSCardsResponse;
-import com.clearscore.rulof.application.task.Models.ScoredCardsService.ScoredCardsResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -13,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**

@@ -34,6 +34,8 @@ public class CreditCardResponse implements Comparable{
     @Override
     public int compareTo(@NotNull Object o) {
         CreditCardResponse incomingCreditCardResponse = (CreditCardResponse)o;
-        return (int)Math.round(cardScore -  incomingCreditCardResponse.getCardScore());
+        double incomingCardScore = ((CreditCardResponse)o).getCardScore();
+        double differrence = cardScore -  incomingCardScore;
+        return differrence < 0 ? 1 : differrence > 0 ? -1 : 0;
     }
 }

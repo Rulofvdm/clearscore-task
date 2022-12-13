@@ -1,6 +1,5 @@
 package com.clearscore.rulof.application.task.Services;
 
-import com.clearscore.rulof.application.task.Exceptions.CSCardsFailedException;
 import com.clearscore.rulof.application.task.Exceptions.ScoredCardsFailedException;
 import com.clearscore.rulof.application.task.Models.ScoredCardsService.ScoredCardsRequest;
 import com.clearscore.rulof.application.task.Models.ScoredCardsService.ScoredCardsResponse;

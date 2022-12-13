@@ -1,7 +1,6 @@
 package com.clearscore.rulof.application.task.Models.ScoredCardsService;
 
 import com.clearscore.rulof.application.task.Models.CreditCardEndpoint.CreditCardResponse;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -47,7 +46,7 @@ public class ScoredCardsResponse {
      * sortingScore = eligibility • ((1/apr)²)
      * @return
      */
-    private double getCardScore(){
+    public double getCardScore(){
         return approvalRating * 10 * (pow(1/apr,2));
     }
 

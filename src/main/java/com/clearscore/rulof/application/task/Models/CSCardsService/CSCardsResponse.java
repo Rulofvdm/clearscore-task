@@ -49,7 +49,7 @@ public class CSCardsResponse {
      * sortingScore = eligibility • ((1/apr)²)
      * @return
      */
-    private double getCardScore(){
+    public double getCardScore(){
         return eligibility * 100 * (pow(1/apr,2));
     }
 
