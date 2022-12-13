@@ -18,18 +18,19 @@ public class Application {
 		}
 	}
 
-	private static void setPort() throws IOException {
+	private static boolean setPort() {
 		String port = System.getenv("HTTP_PORT");
-		if (isParsable(port)){
+		if (isParsable(port)) {
 			System.setProperty("server.port", port);
+			return true;
 		}
-		else{
-			throw new IOException("Cant parse Port in HTTP_PORT environmental variable.");
+		else {
+			return false;
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		setPort();
+	public static void main(String[] args) {
+		if(!setPort()) return;
 		SpringApplication.run(Application.class, args);
 	}
 }

@@ -18,7 +18,7 @@ public class CSCardsResponseUnitTests {
 
         // sortingScore = eligibility • 100 • ((1/apr)²)
         // 1.375 = 5.5 • 100 • ((1/20)²)
-        assertEquals(1375, Math.floor(csCardsResponse.getCardScore()*1000));
+        assertEquals(137, Math.floor(csCardsResponse.getCardScore()*1000));
     }
 
     @Test
@@ -27,7 +27,7 @@ public class CSCardsResponseUnitTests {
 
         // sortingScore = eligibility • 100 • ((1/apr)²)
         // 1.37566599703031 = 6.3 • 100 • ((1/21.4)²)
-        assertEquals(1375, Math.floor(csCardsResponse.getCardScore()*1000));
+        assertEquals(137, Math.floor(csCardsResponse.getCardScore()*1000));
     }
 
     @Test

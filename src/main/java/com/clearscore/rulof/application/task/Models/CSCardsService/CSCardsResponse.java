@@ -50,7 +50,7 @@ public class CSCardsResponse {
      * @return
      */
     public double getCardScore(){
-        return eligibility * 100 * (pow(1/apr,2));
+        return eligibility * 10 * (pow(1/apr,2));
     }
 
     /** this -> CreditCardResponse */

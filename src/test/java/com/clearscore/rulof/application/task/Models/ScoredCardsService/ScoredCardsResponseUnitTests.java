@@ -17,7 +17,7 @@ public class ScoredCardsResponseUnitTests {
 
         // sortingScore = eligibility • 10 • ((1/apr)²)
         // 0.0125 = 0.5 • 10 • ((1/20)²)
-        assertEquals(12, Math.floor(scoredCardsResponse.getCardScore()*1000));
+        assertEquals(125, Math.floor(scoredCardsResponse.getCardScore()*1000));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class ScoredCardsResponseUnitTests {
 
         // sortingScore = eligibility • 10 • ((1/apr)²)
         // 0.0212562440216814 = 0.8 • 10 • ((1/19.4)²)
-        assertEquals(21, Math.floor(scoredCardsResponse.getCardScore()*1000));
+        assertEquals(212, Math.floor(scoredCardsResponse.getCardScore()*1000));
     }
 
     @Test

@@ -47,7 +47,7 @@ public class ScoredCardsResponse {
      * @return
      */
     public double getCardScore(){
-        return approvalRating * 10 * (pow(1/apr,2));
+        return approvalRating * 100 * (pow(1/apr,2));
     }
 
     /** this -> CreditCardResponse */
